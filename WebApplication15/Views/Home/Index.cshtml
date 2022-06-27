@@ -1,0 +1,68 @@
+﻿@model StudentIndexViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <style >
+        table {
+            text-align:center;
+            width:300px;
+            
+        }
+    </style>
+</head>
+<body >
+    <a href="/home/create" class="btn btn-success">Create</a>
+           <form class="alig">
+    <input type="text" name="searchtext" value="@Model.texttosearch"/>
+    <select name="no">
+        <option > select all</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+
+
+    </select>
+    <input type="submit" value="search"/>
+
+    </form>
+    
+    <table  class="table table-bordered table-hover" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.students)
+            {
+                 <tr>
+                     <td>@item.Id</td>
+                     <td>@item.Name</td>
+                     <td>@item.Age</td>
+                     <td>
+                         
+                         <a asp-action="details" asp-controller="home" asp-route-id="@item.Id" class="btn btn-light">Details</a>
+                         <a asp-action="edit" asp-controller="home" asp-route-id="@item.Id" class=" btn btn-success">Edit</a>
+                         <a asp-action="delete" asp-controller="home" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+
+
+
+
+                         
+                     </td>
+
+                 </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
